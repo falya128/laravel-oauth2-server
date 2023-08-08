@@ -1,5 +1,5 @@
 {
-    "name": "laravel/laravel",
+    "name": "falya128/laravel-oauth2-server",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
     "keywords": ["laravel", "framework"],
