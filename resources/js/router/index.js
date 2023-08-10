@@ -6,6 +6,16 @@ const router = createRouter({
       path: '/',
       name: 'index',
       component: () => import('../views/Index.vue')
+    },
+    {
+      path: '/user',
+      name: 'user.index',
+      component: () => import('../views/user/Index.vue')
+    },
+    {
+      path: '/user/edit',
+      name: 'user.edit',
+      component: () => import('../views/user/Edit.vue')
     }
   ]
 })

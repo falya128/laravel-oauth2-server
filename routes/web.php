@@ -20,4 +20,5 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth:web'])->group(function () {
     Route::get('/', fn () => view('app'));
+    Route::get('/user/{path?}', fn () => view('app'))->where('path', 'edit');
 });
