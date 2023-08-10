@@ -13,5 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', fn () => view('login'));
-Route::post('/login', [App\Http\Controllers\LoginController::class, 'login']);
+Route::middleware(['guest'])->group(function () {
+    Route::get('/login', fn () => view('login'))->name('login');
+    Route::post('/login', [App\Http\Controllers\LoginController::class, 'login']);
+});
+
+Route::middleware(['auth:web'])->group(function () {
+    Route::get('/', fn () => view('app'));
+});

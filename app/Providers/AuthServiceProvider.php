@@ -7,6 +7,7 @@ namespace App\Providers;
 use App\Clients\PassportClient;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
+use Illuminate\Support\Str;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,5 +26,6 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Passport::useClientModel(PassportClient::class);
+        Passport::cookie(Str::lower(env('APP_NAME') . '_token'));
     }
 }
