@@ -15,6 +15,12 @@ await axios
       window.location.href = '/login'
     }
   })
+
+const logout = async () => {
+  await axios.post('/logout').then((response) => {
+    window.location.href = '/login'
+  })
+}
 </script>
 
 <template>
@@ -24,6 +30,7 @@ await axios
       <button
         type="button"
         class="rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        @click="logout()"
       >
         ログアウト
       </button>

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
     public function login(Request $request): RedirectResponse
     {
@@ -28,5 +29,16 @@ class LoginController extends Controller
         return back()
             ->withErrors(['email' => '認証に失敗しました。'])
             ->onlyInput('email');
+    }
+
+    public function logout(Request $request): JsonResponse
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return response()->json();
     }
 }

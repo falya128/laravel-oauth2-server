@@ -23,7 +23,7 @@ await axios
 const errors = ref({})
 const submit = async () => {
   await axios
-    .post('/api/user', form.value)
+    .post('/user', form.value)
     .then((response) => {
       router.push('/user')
     })
