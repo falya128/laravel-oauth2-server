@@ -19,11 +19,32 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['auth:web'])->group(function () {
-    // View の表示
     Route::get('/', fn () => view('app'));
     Route::get('/user/{path?}', fn () => view('app'))->where('path', 'edit');
 
-    // Controller の呼び出し
     Route::post('/user', [App\Http\Controllers\UserController::class, 'update']);
-    Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout']);
+});
+
+Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout']);
+
+
+/**
+ * Laravel Passport
+ */
+
+Route::group([
+    'as' => 'passport.',
+    'prefix' => config('passport.path', 'oauth'),
+    'namespace' => '\Laravel\Passport\Http\Controllers',
+], function () {
+    Route::get('/authorize', [
+        'uses' => 'AuthorizationController@authorize',
+        'as' => 'authorizations.authorize',
+        'middleware' => 'web',
+    ]);
+    Route::post('/token', [
+        'uses' => 'AccessTokenController@issueToken',
+        'as' => 'token',
+        'middleware' => 'throttle',
+    ]);
 });
