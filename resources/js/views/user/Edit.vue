@@ -5,7 +5,11 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const form = ref('')
+const form = ref({
+  name: '',
+  email: ''
+})
+
 await axios
   .get('/api/user')
   .then((response) => {
@@ -39,7 +43,7 @@ const submit = async () => {
 <template>
   <div class="flex justify-center">
     <div class="max-w-md w-full rounded overflow-hidden shadow-lg my-6 mx-4 md:mx-auto">
-      <div class="font-bold text-xl px-4 py-6 pb-2">ユーザ情報確認</div>
+      <div class="font-bold text-xl px-4 pt-6 pb-2">ユーザ情報確認</div>
       <form @submit.prevent="submit()">
         <div class="px-4 py-2">
           <label for="name" class="text-sm font-medium">ユーザ名</label>

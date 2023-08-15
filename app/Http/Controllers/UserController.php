@@ -11,14 +11,14 @@ class UserController extends Controller
 {
     public function update(Request $request): JsonResponse
     {
-        // 入力チェック
         $inputs = $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email'],
         ]);
 
-        // ユーザ情報更新
-        $user = User::find(Auth::id());
+        /** @var User ログインユーザ */
+        $user = Auth::user();
+
         $user->fill($inputs)->save();
 
         return response()->json();

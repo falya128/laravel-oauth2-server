@@ -26,6 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Passport::useClientModel(PassportClient::class);
+        Passport::tokensExpireIn(now()->addDay());
+        Passport::refreshTokensExpireIn(now()->addDay());
         Passport::cookie(Str::lower(env('APP_NAME') . '_token'));
     }
 }

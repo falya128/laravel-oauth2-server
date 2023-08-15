@@ -20,7 +20,7 @@ await axios
 <template>
   <div class="flex justify-center">
     <div class="max-w-md w-full rounded overflow-hidden shadow-lg my-6 mx-4 md:mx-auto">
-      <div class="font-bold text-xl px-4 py-6 pb-2">ユーザ情報確認</div>
+      <div class="font-bold text-xl px-4 pt-6 pb-2">ユーザ情報確認</div>
       <div class="flex justify-end mx-4 mb-4">
         <RouterLink
           class="text-sm underline underline-offset-4 text-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-300"
@@ -30,7 +30,7 @@ await axios
         </RouterLink>
       </div>
       <div class="border-y border-gray-100">
-        <dl class="divide-y divide-gray-100">
+        <dl v-if="user !== null" class="divide-y divide-gray-100">
           <div class="px-4 py-6 sm:grid sm:grid-cols-3">
             <dt class="text-sm font-medium leading-6 text-gray-900">ユーザ名</dt>
             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
@@ -41,6 +41,12 @@ await axios
             <dt class="text-sm font-medium leading-6 text-gray-900">メールアドレス</dt>
             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
               {{ user.email }}
+            </dd>
+          </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3">
+            <dt class="text-sm font-medium leading-6 text-gray-900">最終ログイン日時</dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+              {{ user.last_login_at }}
             </dd>
           </div>
         </dl>
